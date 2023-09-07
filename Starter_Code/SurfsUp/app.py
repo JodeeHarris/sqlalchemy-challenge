@@ -56,7 +56,9 @@ def welcome():
 @app.route("/api/v1.0/precipitation")
 def precipetation():
     time_before = dt.datetime(2017,8,23-dt.timedelta(days = 365))
-    rain = session.query(measure.date,measure.prcp).filter(measure.date >= time_before).all()
+    rain = session.query(measure.date,measure.prcp
+                                ).filter(measure.date >= time_before
+                                                            ).all()
     
     rain_frame = []
     
@@ -70,7 +72,11 @@ def precipetation():
     
 @app.route("/api/v1.0/stations")
 def Stations():
-    station_query = session.query(measure.station,func.count(measure.station)).group_by(measure.station).order_by(func.count(measure.station).desc()).all()
+    station_query = session.query(measure.station,func.count(measure.station
+                                                             )).group_by(measure.station
+                                                                         ).order_by(func.count(measure.station
+                                                                                               ).desc(
+                                                                                                   )).all()
     
     station_frame = []
     
@@ -85,7 +91,10 @@ def Stations():
 @app.route("/api/v1.0/tobs")
 def func2():
     time_before = dt.datetime(2017,8,23)- dt.timedelta(days = 365)
-    station_query = session.query(measure.station, measure.date, measure.tobs).filter(measure.date >= time_before).filter(measure.station =='USC00519281').all()
+    station_query = session.query(measure.station, measure.date, measure.tobs
+                                  ).filter(measure.date >= time_before
+                                           ).filter(measure.station =='USC00519281'
+                                                                               ).all()
     
     station_frame = []
     
@@ -100,7 +109,11 @@ def func2():
 @app.route("/api/v1.0/<start>")
 def TOBS_Search(start):
     
-    tobs_query = session.query(func.min(measure.tobs),func.max(measure.tobs),func.avg(measure.tobs)).filter(measure.date >= start).all()
+    tobs_query = session.query(func.min(measure.tobs
+                                        ),func.max(measure.tobs
+                                                   ),func.avg(measure.tobs
+                                                              )).filter(measure.date >= start
+                                                                                        ).all()
     
     tobs_frame = []
     
@@ -116,7 +129,11 @@ def TOBS_Search(start):
 @app.route("/api/v1.0/<start>/<end>")
 def active_station(start,end):
     
-    tobs_query = session.query(func.min(measure.tobs),func.max(measure.tobs),func.avg(measure.tobs)).filter(measure.date >= start, measure.date < end).all()
+    tobs_query = session.query(func.min(measure.tobs
+                                        ),func.max(measure.tobs
+                                                   ),func.avg(measure.tobs
+                                                              )).filter(measure.date >= start, measure.date < end
+                                                                                                                ).all()
     
     tobs_frame = []
     
