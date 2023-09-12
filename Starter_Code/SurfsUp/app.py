@@ -1,6 +1,6 @@
 # Import the dependencies.
 import numpy as np
-import datetime as dt
+import datetime as dt 
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
@@ -65,7 +65,8 @@ def welcome():
 def precipetation():
     
     #Creating a time date variable to search fopr the past year's relevant data
-    time_before = dt.datetime(2017,8,23-dt.timedelta(days = 365))
+    
+    time_before = dt.datetime(2017,8,23)- dt.timedelta(days = 365)
     
     #Creating a query
     rain = session.query(measure.date,measure.prcp
